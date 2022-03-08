@@ -1,0 +1,62 @@
+  hydra:
+     run:
+        dir: ./outputs/${comment}/${now:%Y-%m-%d}/
+  comment: ${method}_margin_${margin.m_loss}_wi_${loss.w_lambda}_normIF_${normalize_img_features}
+  backbone_model: resnet18
+  backbone_outfeatures: 512
+  img_out_features: 128
+  data_type: OAI
+  method: AdaTriplet-AM
+  type_of_triplets: semihard
+  test_CXR_side: all
+  device: cuda
+  image_crop_path:
+  image_raw_path:
+  projectpath:
+  metadatapath:
+  datapath:
+  result_path:
+  pretrained_matching_model_folder_path: None
+  cropset: CropIMG_Path.csv
+  clinicalset: Clinical_data_follow_ups.csv
+  merged_crop_clinical_file: PreprocessedData.csv
+  preprocess_data: PreprocessedData_Forensic.csv
+  metadata_KLset: ID_SIDE_KL.csv
+  test_site: C
+  loss_identity_func: LB
+  eval_dismat_algorithm: euclidean
+  num_workers: 8
+  batchsize: 128
+  n_folds: 5
+  i_fold: 0
+  learning_rate: 1e-4
+  weight_decay: 1e-4
+  dropout_rate: 0.2
+  csc_mode: False
+  pretrained: True
+  normalize_img_features: True
+  normalize_identity_features: True
+  save_distribution: False
+  noepochs: 100
+  seed: 28
+  personal_id: ID
+  load_model_metric: mAP
+  query_time: 12
+  distance_loss: cosine
+  automargin_mode: normal
+  loss:
+      w_lambda: 1
+      w_neg: 1
+  k_param_automargin: 2
+  k_n_param_autobeta: 2
+  k_p_param_autobeta: 2
+  margin:
+    delta_p: 0
+    delta_n: 0
+    beta: 0
+    m_loss: 0.25
+  sampler:
+    samplers_per_class: 4
+  vars:
+    best_ap: -1e8
+    best_cmc: -1e8
